@@ -6,8 +6,12 @@ export const counterReducer = (state = counterInitialState, action) => {
         return newState;
     }
     else if(action.type === COUNTER_DOWN){
+        const newState = {...state, counter: state.counter-1}
+        return newState;
     }
     else if(action.type === COUNTER_SET){
+        const newState = {...state, counter:action.payload}  // counter actiondan aldik
+        return newState;
     }
     // Bu satır hiç bir if case ine girmediğinde geriye mevcut state i göndersin diye yazıldı
     // Eğer olmazsa tüm state uçar.
