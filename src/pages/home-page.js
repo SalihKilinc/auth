@@ -15,7 +15,7 @@ const HomePage = () => {
         <Button variant="secondary" disabled>{counter}</Button>
         <Button variant="info" onClick={()=> dispatchCounter(counterUp())}>+</Button>
       </ButtonGroup>
-    </div>
+    </div> 
   );
 };
 
