@@ -12,19 +12,19 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const { dispatchAuth } = useStore();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  // sayfalar arasinda gecisi sagliyor
 
-  const handleLogin = async (e) => {   // backende baglandik burayla
+  const handleLogin = async (e) => {   // backende baglandik burayla 
     e.preventDefault();
     const payload = { email, password };
 
-    try {
+    try {  // backend kismindan gelen datalar icin olusturduk
       setLoading(true);
-      const respAuth = await axios.post(`${API_BASE_URL}/login`, payload);
-      const token = respAuth.data.token;
+      const respAuth = await axios.post(`${API_BASE_URL}/login`, payload);  // awit kullandigimiz icin async kullanmaliyiz hata almamak icin
+      const token = respAuth.data.token;   //token aldik
 
-      const authHeader = { Authorization: `Bearer ${token}` };
-      const respUser = await axios.get(`${API_BASE_URL}/user`, {
+      const authHeader = { Authorization: `Bearer ${token}` };  // kullanici girisinde tokeni usera verdik yoksa giremez
+      const respUser = await axios.get(`${API_BASE_URL}/user`, {  //header ile kimlik gonderdik
         headers: authHeader,
       });
 
@@ -64,11 +64,11 @@ const LoginPage = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit" disabled={loading}>
-          {loading && <Spinner animation="border" size="sm" />} Login
+          {loading && <Spinner animation="border" size="sm" />} Login 
         </Button>
       </Form>
     </Container>
-  );
+  ); // button ile iki defa tiklanmanin onune gecen formul yazdik ve loading yukledik
 };
 
 export default LoginPage;
